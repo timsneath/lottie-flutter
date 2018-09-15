@@ -17,6 +17,7 @@ const List<String> assetNames = const <String>[
   'assets/favourite_app_icon.json',
   'assets/preloader.json',
   'assets/walkthrough.json',
+  'assets/rrect.json',
 ];
 
 void main() {
@@ -55,7 +56,7 @@ class _LottieDemoState extends State<LottieDemo>
     super.initState();
 
     _repeat = false;
-    //_loadButtonPressed(assetNames[6]);
+    _loadButtonPressed(assetNames.last);
     _controller = new AnimationController(
       duration: const Duration(milliseconds: 1),
       vsync: this,

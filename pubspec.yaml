@@ -1,5 +1,5 @@
 name: lottie_flutter
-version: 0.1.1
+version: 0.2.0
 description: Lottie widget and demo for Flutter.
 authors:
   - Dan Field <dfield@gmail.com>
@@ -15,8 +15,7 @@ dependencies:
     sdk: flutter
 
 dev_dependencies:
-  test: ">=0.12.34 <1.0.0" 
-  inflection: any
+  test: "^1.3.0" 
   flutter_test:
     sdk: flutter
 
@@ -26,18 +25,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/muzli.json
-    - assets/empty_box.json
-    - assets/happy_gift.json
-    - assets/walkthrough.json
-    - assets/emoji_shock.json
-    - assets/preloader.json
-    - assets/checked_done_.json
-    - assets/favourite_app_icon.json
-    - assets/motorcycle.json
-    - assets/hamburger_arrow.json
-    - assets/Indicators2.json
+    - assets/
 
 environment:
-  sdk: ">=1.19.0 <3.0.0"
-  flutter: ">=0.3.6 <2.0.0"
+  sdk: ">=2.0.0 <3.0.0"
+  flutter: ">=0.7.3 <2.0.0"

@@ -1,12 +1,14 @@
 import 'dart:math';
 import 'dart:ui';
+
 import 'package:lottie_flutter/src/animations.dart';
 import 'package:lottie_flutter/src/drawing/drawing.dart';
 import 'package:lottie_flutter/src/drawing/elements/paths.dart';
 import 'package:lottie_flutter/src/utils.dart';
 import 'package:lottie_flutter/src/values.dart';
-
 import 'package:lottie_flutter/src/drawing/drawing_layers.dart';
+
+import 'package:vector_math/vector_math_64.dart';
 
 abstract class _PolygonDrawable extends AnimationDrawable
     implements PathContent {
@@ -132,54 +134,16 @@ class RectangleDrawable extends _PolygonDrawable {
     final double halfHeight = size.dy / 2.0;
     final double radius =
         min(_cornerRadiusAnimation?.value ?? 0.0, min(halfWidth, halfHeight));
-
     _path.reset();
-    _path.moveTo(position.dx + halfWidth, position.dy - halfHeight + radius);
-    _path.lineTo(position.dx + halfWidth, position.dy + halfHeight - radius);
 
-    if (radius > 0) {
-      final Rect rect = new Rect.fromLTRB(
-          position.dx + halfWidth - 2 * radius,
-          position.dy + halfHeight - 2 * radius,
-          position.dx + halfWidth,
-          position.dy + halfHeight);
-      _path.arcTo(rect, 0.0, 90.0, false);
-    }
-
-    _path.lineTo(position.dx - halfWidth + radius, position.dy + halfHeight);
-
-    if (radius > 0) {
-      final Rect rect = new Rect.fromLTRB(
-          position.dx - halfWidth,
-          position.dy + halfHeight - 2 * radius,
-          position.dx - halfWidth + 2 * radius,
-          position.dy + halfHeight);
-      _path.arcTo(rect, 90.0, 90.0, false);
-    }
-
-    _path.lineTo(position.dx - halfWidth, position.dy - halfHeight + radius);
-
-    if (radius > 0) {
-      final Rect rect = new Rect.fromLTRB(
-          position.dx - halfWidth,
-          position.dy - halfHeight,
-          position.dx - halfWidth + 2 * radius,
-          position.dy - halfHeight + 2 * radius);
-      _path.arcTo(rect, 180.0, 90.0, false);
-    }
-
-    _path.lineTo(position.dx + halfWidth - radius, position.dy - halfHeight);
-
-    if (radius > 0) {
-      final Rect rect = new Rect.fromLTRB(
-          position.dx + halfWidth - 2 * radius,
-          position.dy - halfHeight,
-          position.dx + halfWidth,
-          position.dy - halfHeight + 2 * radius);
-      _path.arcTo(rect, 270.0, 90.0, false);
-    }
-
-    _path.close();
+    final RRect rect = new RRect.fromLTRBR(
+      position.dx - halfHeight,
+      position.dy - halfWidth,
+      size.dx - halfHeight,
+      size.dy - halfWidth,
+      new Radius.circular(radius),
+    );
+    _path.addRRect(rect);
   }
 }
 
