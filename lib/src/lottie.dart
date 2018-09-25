@@ -42,7 +42,7 @@ class _LottieState extends State<Lottie> with SingleTickerProviderStateMixin {
 
     setScaleAndCompositionLayer();
 
-    if (widget._coerceDuration && widget._composition != null) {
+    if (widget._coerceDuration && widget._composition != null && widget._controller != null) {
       widget._controller.duration =
           new Duration(milliseconds: widget._composition.duration);
     }
