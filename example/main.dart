@@ -17,7 +17,7 @@ const List<String> assetNames = const <String>[
   'assets/favourite_app_icon.json',
   'assets/preloader.json',
   'assets/walkthrough.json',
-  'assets/rrect.json',
+  // 'assets/rrect.json',
 ];
 
 void main() {
@@ -119,8 +119,8 @@ class _LottieDemoState extends State<LottieDemo>
                           _repeat = !_repeat;
                           if (_controller.isAnimating) {
                             if (_repeat) {
-                              _controller.forward().then<Null>(
-                                  (Null nul) => _controller.repeat());
+                              _controller.forward().then<void>(
+                                  (void nul) => _controller.repeat());
                             } else {
                               _controller.forward();
                             }
